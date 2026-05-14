@@ -240,6 +240,20 @@ A imagem acima mostra a arquitetura completa. A barra horizontal central represe
 
 Tudo que a LLM "conhece" em um dado momento é o que está dentro dessa barra. Quando o limite é atingido, as mensagens mais antigas começam a ser descartadas. O comportamento que parece "esquecimento" em sessões longas é exatamente isso: a janela de contexto se esgotando.
 
+## Gerenciando a janela de contexto no Claude Code
+
+No dia a dia com o Claude Code, o array cresce rápido: arquivos lidos, comandos executados, resultados de tools. Três comandos ajudam a gerenciar isso diretamente:
+
+**`/context`** mostra o estado atual da janela de contexto — quantos tokens estão ocupados e qual é o limite. É o equivalente a olhar para o array e ver quanto espaço ainda resta antes de as mensagens mais antigas começarem a ser descartadas.
+
+**`/compact`** comprime o histórico resumindo as mensagens mais antigas. O array não é descartado — ele é condensado: a LLM recebe um resumo do que aconteceu antes em vez de cada mensagem na íntegra. Útil quando você está no meio de uma tarefa longa e não quer perder o fio da conversa.
+
+**`/clear`** limpa o array por completo. A próxima mensagem começa do zero, só com o system prompt. Útil quando você terminou uma tarefa e vai começar outra sem relação com a anterior — carregar contexto irrelevante só adiciona ruído e aumenta o risco de alucinação.
+
+A escolha entre os dois depende do momento: `/compact` quando quer continuar de onde parou com menos peso, `/clear` quando quer um começo limpo.
+
+Para mais detalhes sobre como o Claude Code gerencia contexto, o curso oficial da Anthropic tem uma aula dedicada ao tema: [Claude Code 101](https://anthropic.skilljar.com/claude-code-101/469793).
+
 ## Conclusão
 
 A janela de contexto é um array de mensagens que cresce a cada turno, enviado integralmente ao servidor a cada requisição. A LLM não tem estado: ela lê esse array do zero toda vez e gera a próxima mensagem.
