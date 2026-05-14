@@ -1,10 +1,12 @@
 # Engenharia de Contexto - Parte 1 (short-term memory)
 
-Engenharia de Contexto é o conceito que está substituindo o prompt engineering. Enquanto prompt engineering se preocupa com "como escrever um bom prompt", context engineering vai além: é, nas palavras de Tobi Lutke (CEO da Shopify), _"a arte de fornecer todo o contexto necessário para que a tarefa seja solucionada pela LLM"_ ([tweet original](https://x.com/tobi/status/1935533422589399127)).
+Toda vez que você digita uma mensagem no Claude Code, o que vai para o servidor não é só o que você escreveu. É um **array JSON com o histórico completo da conversa** — cada mensagem, cada resposta, cada resultado de ferramenta.
 
-A diferença parece sutil, mas quando você entende o que acontece por baixo dos panos de ferramentas como Claude Code e Cursor, ela faz todo o sentido. É isso que esse post explica.
+Isso é a **janela de contexto**, e ela é o coração de um conceito chamado **Engenharia de Contexto** — que nas palavras de Tobi Lutke (CEO da Shopify) é _"a arte de fornecer todo o contexto necessário para que a tarefa seja solucionada pela LLM"_ ([tweet original](https://x.com/tobi/status/1935533422589399127)). Diferente do prompt engineering, que se preocupa com "como escrever um bom prompt", context engineering vai além: trata do que está nesse array no momento em que a LLM processa sua mensagem.
 
-O projeto nessa pasta acompanha o conteúdo com exemplos práticos, baseados no curso de IA para devs do Rodrigo Branas (https://www.branas.io/formacoes/inteligencia-artificial). Para rodar, configure o `.env`:
+Entender isso muda a forma como você usa qualquer ferramenta de IA. É isso que esse post explica.
+
+O projeto acompanha o conteúdo com exemplos práticos, baseados no curso de IA para devs do Rodrigo Branas (https://www.branas.io/formacoes/inteligencia-artificial). O código completo está em [github.com/renangabriel27/context-engineering-ia](https://github.com/renangabriel27/context-engineering-ia/tree/main/context-window). Para rodar, configure o `.env`:
 
 ```bash
 cp .env.example .env

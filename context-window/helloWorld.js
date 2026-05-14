@@ -1,2 +1,2 @@
 const msg = "Hello World";
-console.log(msg);
+console.log(message);
