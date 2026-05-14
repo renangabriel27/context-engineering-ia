@@ -1,0 +1,26 @@
+{
+  "name": "context-window",
+  "version": "1.0.0",
+  "description": "Exemplos práticos de engenharia de contexto com LLMs: sem tools, com tools e chat interativo",
+  "author": "Renan <renan.almeida@fretadao.com.br>",
+  "license": "ISC",
+  "main": "index.js",
+  "scripts": {
+    "without-tools": "ts-node assistant-without-tools.ts",
+    "with-tools": "ts-node assistant-with-tools.ts",
+    "chat": "ts-node assistant-chat.ts"
+  },
+  "keywords": ["context-engineering", "llm", "ai", "openrouter"],
+  "dependencies": {
+    "@ai-sdk/openai": "^3.0.21",
+    "@openrouter/ai-sdk-provider": "^2.0.2",
+    "ai": "^6.0.53",
+    "dotenv": "^17.2.3",
+    "zod": "^4.3.6"
+  },
+  "devDependencies": {
+    "@types/node": "^25.0.10",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.9.3"
+  }
+}
