@@ -19,7 +19,9 @@ OPENROUTER_MODEL=x-ai/grok-4.1-fast
 
 Toda vez que você envia uma mensagem para uma ferramenta de IA, o que vai para o servidor não é só a sua última mensagem. É um **array JSON com o histórico completo da conversa** cada mensagem, cada resposta, cada resultado de ferramenta.
 
-Isso é a **janela de contexto** (context window). É a única "memória" que a LLM tem durante uma sessão. LLM (Large Language Model) é o modelo de linguagem que processa as suas mensagens por exemplo Sonnet, Opus, GPT-4o, Grok, entre outras.
+Isso é a **janela de contexto** (context window). É a única "memória" que a LLM tem durante uma sessão.
+
+**LLM** (Large Language Model) é o modelo de linguagem que processa o texto e gera as respostas o Claude Sonnet, GPT-4o e Grok são exemplos. Toda ferramenta de IA como Claude Code, Cursor ou Copilot usa uma LLM por baixo dos panos.
 
 A estrutura é simples:
 
@@ -128,6 +130,31 @@ O projeto tem cinco tools:
 | `createFile` | Cria um arquivo novo |
 | `editFile` | Edita um arquivo existente substituindo um trecho |
 | `bash` | Executa um comando bash e retorna o output |
+
+Cada ferramenta de IA tem seu próprio conjunto de tools. No Claude Code, por exemplo, você pode pedir `Liste suas tools disponíveis` e ele responde com algo assim:
+
+```
+Arquivo e código
+  - Edit — edita arquivos com substituição exata de string
+  - Write — cria ou reescreve arquivos
+  - Bash — executa comandos shell
+
+Agentes e tarefas
+  - Agent — lança sub-agentes especializados (Explore, Plan, code-reviewer, etc.)
+  - TaskCreate / TaskGet / TaskList / TaskUpdate / TaskStop / TaskOutput — gerencia tarefas dentro da conversa
+
+Busca e navegação
+  - WebFetch — busca conteúdo de uma URL
+  - WebSearch — pesquisa na web
+
+IDE e código
+  - LSP — diagnósticos e navegação via Language Server Protocol
+  - mcp__ide__getDiagnostics — erros/warnings do IDE
+
+[...]
+```
+
+Você pode pedir o mesmo para o Cursor, Copilot, Codex, cada um terá seu próprio conjunto.
 
 ## Experimento 2: com ferramentas
 
