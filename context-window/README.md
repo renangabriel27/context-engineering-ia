@@ -32,7 +32,9 @@ A estrutura é simples:
   "messages": [
     { "role": "system",    "content": "Você é um assistente de código..." },
     { "role": "user",      "content": "o arquivo helloWorld.js não está funcionando" },
-    { "role": "assistant", "content": "Vou verificar o arquivo..." }
+    { "role": "assistant", "content": "Vou ler o arquivo..." },
+    { "role": "tool",      "content": "const msg = 'Hello World'; console.log(message);" },
+    { "role": "assistant", "content": "Encontrei o problema, vou corrigir..." }
   ]
 }
 ```
@@ -42,6 +44,7 @@ Cada mensagem tem uma `role` que indica quem está falando:
 - **`system`**: instruções base da ferramenta, com o maior peso na resposta
 - **`user`**: você
 - **`assistant`**: a LLM
+- **`tool`**: resultado de uma ferramenta executada na máquina local, devolvido ao array para que a LLM possa continuar
 
 A cada turno da conversa o array cresce, e esse array inteiro vai para o servidor a cada requisição. A LLM não tem estado entre sessões. Ela lê o array do zero toda vez e gera a próxima mensagem com base nisso.
 
