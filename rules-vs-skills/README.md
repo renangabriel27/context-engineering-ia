@@ -16,7 +16,7 @@ Neste post, vamos entender o que é cada uma, quando usar uma ou a outra e como 
 | | Rules | Skills |
 |---|---|---|
 | Quando carrega | Sempre | Quando acionada |
-| Onde mora | Arquivo único na raiz (ex.: `CLAUDE.md`) | Pasta própria (ex.: `.claude/skills/<nome>/`) |
+| Onde mora | Arquivo de rules (ex.: `CLAUDE.md`) | Pasta própria (ex.: `.claude/skills/<nome>/`) |
 | Custo de contexto | Constante | Só ao usar |
 | Bom para | Convenções, comandos obrigatórios | Workflows pontuais |
 
