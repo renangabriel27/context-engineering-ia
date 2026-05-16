@@ -7,6 +7,23 @@ Antes de seguir, vale lembrar: a janela de contexto da LLM (large language model
 
 Neste post, vamos entender o que é cada uma, quando usar uma ou a outra e como combinar as duas para manter o agente útil sem sobrecarregar a janela de contexto.
 
+## Sumário
+
+- [TL;DR](#tldr)
+- [Regras (Rules): a memória de longo prazo](#regras-rules-a-memória-de-longo-prazo)
+  - [Caminhos para criar Rules](#caminhos-para-criar-rules-podem-ser-combinados)
+  - [Cuidado com excesso de Rules](#cuidado-com-excesso-de-rules)
+  - [Estrutura de uma Rule](#estrutura-de-uma-rule)
+- [Habilidades (Skills): conhecimento sob demanda](#habilidades-skills-conhecimento-sob-demanda)
+  - [Onde encontrar Skills prontas](#onde-encontrar-skills-prontas)
+  - [Estrutura de uma Skill](#estrutura-de-uma-skill)
+  - [Skills pré-construídas do Claude Code](#skills-pré-construídas-do-claude-code)
+  - [Como instalar e usar uma Skill](#como-instalar-e-usar-uma-skill)
+- [Rules x Skills: como decidir onde colocar cada coisa](#rules-x-skills-como-decidir-onde-colocar-cada-coisa)
+- [Dica: distribua os CLAUDE.md por diretório](#dica-distribua-os-claudemd-por-diretório)
+- [Conclusão](#conclusão)
+- [Referências](#referências)
+
 ## TL;DR
 
 - **Rules**: sempre carregadas no contexto. Use para o que vale em qualquer tarefa (stack, convenções, comandos obrigatórios).
@@ -97,7 +114,7 @@ Existem dois marketplaces (lojas) bastante usados para baixar Skills já feitas 
 
 Lá você encontra desde Skills genéricas (gerar README, criar imagens, design front-end) até Skills mais específicas, como a de criação de PRD (Product Requirements Document, o documento de requisitos do produto).
 
-Neste próprio repositório a Skill `prd-development` foi instalada como exemplo, em `.agents/skills/prd-development/`. Abrindo essa pasta, dá para ver a estrutura organizada: pasta `templates/`, pasta `references/` e o `SKILL.md` na raiz. Para usá-la dentro do Claude Code ou do Cursor, basta pedir de forma explícita: "Crie um PRD usando a skill `prd-development`, no formato que eu vou descrever a seguir".
+Neste próprio repositório a Skill `prd-development` foi instalada como exemplo, em `.agents/skills/prd-development/`. Abrindo essa pasta, dá para ver a estrutura organizada: pasta `templates/`, pasta `references/` e o `SKILL.md` na raiz.
 
 ## Estrutura de uma Skill
 
@@ -129,6 +146,34 @@ O Claude Code já vem com algumas Skills nativas, prontas para uso sem instalaç
 - **Word (docx)**: criar e editar documentos, formatar texto.
 - **PDF (pdf)**: gerar PDFs formatados e relatórios.
 
+### Como instalar e usar uma Skill
+
+Para instalar, basta copiar a pasta da Skill para o diretório `.claude/skills/` (Claude Code) ou `.agents/skills/` (padrão aberto usado por outros agentes) na raiz do projeto:
+
+```
+.claude/
+  skills/
+    prd-development/
+      SKILL.md
+      templates/
+      references/
+```
+
+Para acionar uma Skill no **Claude Code**, use o comando `/` seguido do nome:
+
+```
+/prd-development Quero criar um PRD para uma feature de autenticação via Google.
+```
+
+No **Cursor**, **Windsurf** ou qualquer outro agente que suporte Skills, basta pedir de forma explícita pelo nome:
+
+```
+Crie um PRD usando a skill prd-development para a feature de autenticação via Google.
+```
+
+A Skill só entra na janela de contexto nesse momento. Antes disso, apenas o `name` e o `description` do seu `SKILL.md` ficam disponíveis para o agente saber que ela existe.
+
+
 ## Rules x Skills: como decidir onde colocar cada coisa
 
 Skills não substituem Rules. As Rules continuam sendo as instruções inegociáveis do projeto. Ter Skills disponíveis muda a forma de escrever as Rules, porque permite que elas fiquem mais enxutas.
@@ -149,6 +194,19 @@ Um padrão que funciona bem na prática é fazer as Rules atuarem quase como um 
 - "Quando for criar services, carregue a skill `create-service`."
 - "Quando for criar specs, carregue a skill `create-spec`."
 ```
+
+## Dica: distribua os `CLAUDE.md` por diretório
+
+O Claude Code carrega arquivos `CLAUDE.md` de subdiretórios sob demanda, apenas quando trabalha com arquivos daquele diretório. Isso permite manter o `CLAUDE.md` raiz enxuto com o contexto geral do projeto e distribuir regras específicas onde elas realmente se aplicam:
+
+```
+CLAUDE.md                    ← visão geral, stack, comandos obrigatórios
+app/services/CLAUDE.md       ← padrão de service objects
+app/workers/CLAUDE.md        ← padrões de workers e prioridade de fila
+spec/CLAUDE.md               ← regras de RSpec e estrutura de testes
+```
+
+Regras de service não ocupam contexto quando o agente está trabalhando em `spec/`, e vice-versa. O mesmo princípio de economia de tokens das Skills, mas aplicado às Rules. Esse comportamento é documentado nas [melhores práticas oficiais do Claude Code](https://code.claude.com/docs/pt/best-practices).
 
 ## Conclusão
 
