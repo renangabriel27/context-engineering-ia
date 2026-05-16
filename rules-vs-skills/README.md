@@ -178,8 +178,6 @@ A Skill só entra na janela de contexto nesse momento. Antes disso, apenas o `na
 
 Skills não substituem Rules. As Rules continuam sendo as instruções inegociáveis do projeto. Ter Skills disponíveis muda a forma de escrever as Rules, porque permite que elas fiquem mais enxutas.
 
-Uma divisão que costuma funcionar bem:
-
 Alguns exemplos para fixar:
 
 - *"Nunca faça commit de arquivos .env"* (Rule)
@@ -212,7 +210,7 @@ Regras de service não ocupam contexto quando o agente está trabalhando em `spe
 
 As Rules e as Skills cumprem papéis complementares no agente. As Rules carregam o que é sempre verdade no projeto, o que precisa valer em qualquer tarefa. As Skills carregam conhecimento que entra em cena apenas quando é necessário, sem ocupar espaço na janela de contexto enquanto isso. Quando usadas em conjunto, elas mantêm a janela de contexto enxuta e o agente focado no problema que está sendo resolvido.
 
-Na próxima aula, vamos avançar para outra parte importante da engenharia de contexto. Antes disso, uma sugestão prática: abra o `CLAUDE.md` ou o `.cursor/rules` do seu projeto e aplique o teste apresentado neste post. Tudo o que está nesse arquivo precisa estar sempre carregado? Existe algo ali que faria mais sentido como Skill?
+Uma sugestão prática: abra o `CLAUDE.md` ou o `.cursor/rules` do seu projeto e aplique o teste apresentado neste post. Tudo o que está nesse arquivo precisa estar sempre carregado? Existe algo ali que faria mais sentido como Skill?
 
 ## Referências
 
