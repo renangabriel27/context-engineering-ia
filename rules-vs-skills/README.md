@@ -56,7 +56,7 @@ A função das Rules é guardar o que é verdade no seu projeto: padrões de arq
 ### Caminhos para criar Rules (podem ser combinados)
 
 1. **Do zero**: o time se reúne, discute o que faz sentido virar regra e escreve em conjunto. Esse caminho leva mais tempo, mas costuma gerar Rules mais alinhadas com a realidade do projeto.
-2. **Copiar da internet**: existem repositórios públicos com Rules prontas para diversas stacks. É um bom ponto de partida, desde que você leia com atenção e remova tudo que não se aplica ao seu caso. Regras que não correspondem ao código do projeto acabam virando ruído na janela de contexto.
+2. **Clonar do github**: existem repositórios públicos com Rules prontas para diversas stacks. É um bom ponto de partida, desde que você leia com atenção e remova tudo que não se aplica ao seu caso. Regras que não correspondem ao código do projeto acabam virando ruído na janela de contexto.
 3. **Pedir para a LLM gerar a partir do código**: no Claude Code, o comando `/init` faz exatamente isso ele varre o projeto e gera um `CLAUDE.md` inicial. Funciona bem em projetos coesos. Em projetos que mudaram muito de stack ao longo do tempo, a LLM pode reproduzir contradições do próprio histórico, então a revisão humana continua sendo importante.
 
 Uma sugestão prática: escreva as Rules primeiro no idioma do time, discuta com as pessoas envolvidas, refine e só depois (se fizer sentido) peça para o Claude traduzir para inglês e completar com exemplos. Vale prestar atenção no tamanho do arquivo. Rules longas demais ocupam espaço na janela de contexto que poderia estar sendo usado para o problema que você está resolvendo.
